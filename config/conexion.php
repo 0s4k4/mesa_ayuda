@@ -1,26 +1,30 @@
 <?php
-    session_start();
-    
     class Conectar{
         protected $dbh;
-        
+
         protected function Conexion(){
             try {
-                $conectar = $this->dbh = new PDO("mysqli:localhost;dbname=mesa_ayuda","root","");
-                return $conectar;
-            } catch (Exception $e){
-                print "Error en la base de datos ". $e->getMessage()."<br>";
-                die();
-            }
+                //Local
+				$conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=mesa_ayuda","root","");
+                //Produccion
+                //$conectar = $this->dbh = new PDO("mysql:host=localhost;dbname=andercode_helpdesk1","andercode","contraseña");
+				return $conectar;
+			} catch (Exception $e) {
+				print "¡Error BD!: " . $e->getMessage() . "<br/>";
+				die();
+			}
         }
 
         public function set_names(){
-            return $this->dbh->query("SET NAMES 'utf8' ");
+			return $this->dbh->query("SET NAMES 'utf8'");
         }
 
-        public function ruta(){
-            return 'http://localhost/mesa_ayuda/';
-        }
+        public static function ruta(){
+            //Local
+			return "http://localhost/mesa_ayuda/";
+            //Produccion
+            //return "http://helpdesk.anderson-bastidas.com/";
+		}
 
     }
 ?>
