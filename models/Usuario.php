@@ -1,4 +1,5 @@
 <?php
+session_start();
     class Usuario extends Conectar {
         
         public function login(){
@@ -19,7 +20,7 @@
                     $resultado = $stmt->fetch();
                     if(is_array($resultado)and count($resultado)>0){
                         $_SESSION['user_id']=$resultado['user_id'];
-                        $_SESSION['user_nombre']=$resultado['user_nombre'];
+                        $_SESSION['user_nom']=$resultado['user_nom'];
                         $_SESSION['user_pass']=$resultado['user_pass'];
                         header("Location:".Conectar::ruta()."view/Home/");
                         exit();

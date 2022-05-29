@@ -5,7 +5,7 @@
         $usuario = new Usuario();
         $usuario->login();
     }
-
+    session_start();
 ?>
 
 <!DOCTYPE html>
